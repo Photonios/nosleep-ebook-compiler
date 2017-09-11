@@ -1,0 +1,12 @@
+# Ignore python cache files
+*.pyc
+__pycache__
+
+# Ignore python virtual envs
+env/
+venv/
+
+# Ignore generated e-books
+book.md
+submissions.json
+book.docx
