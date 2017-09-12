@@ -62,37 +62,6 @@ def pull_submission_list(submission_urls: List[str]) -> List[dict]:
     return submissions
 
 
-def discover_submissions(submission_url: str) -> List[Tuple[str, str]]:
-    """Starts at the specified submission and finds the next submission
-    linked in the specified submission.
-
-    Arguments:
-        submission_url:
-            The URL to the submission to start discovering from.
-
-    Returns:
-        An array of tuples of submissions that were discovered.
-    """
-
-    submission = reddit.submission(url=submission_url)
-    submission_title = submission.title
-    submission_body = submission.selftext
-
-    regex_result = (
-        re.compile('(?:Next|Future)(?:.*)\((.*)\)', re.IGNORECASE)
-        .search(submission_body)
-    )
-
-    story = [(submission_title, extract_story(submission_body))]
-    LOGGER.info('Pulled story \'%s\'', submission_title)
-
-    if regex_result:
-        submission_url_next = regex_result.groups()[0]
-        return story + discover_submissions(submission_url_next)
-
-    return story
-
-
 def read_submission_urls_file(submission_urls_filename: str) -> List[str]:
     """Reads submission URL's from the specified file.
 
