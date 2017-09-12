@@ -2,7 +2,7 @@
   <img src="http://www.adweek.com/galleycat/wp-content/uploads/sites/11/2013/01/nosleep.jpeg" />
 </p>
 
-![Python version](https://img.shields.io/badge/python->=%203.5-brightgreen.svg) ![MIT](https://img.shields.io/:license-mit-blue.svg)
+![Python version](https://img.shields.io/badge/python-3.5-brightgreen.svg) ![MIT](https://img.shields.io/:license-mit-blue.svg)
 
 # E-Book Compiler for r/nosleep
 
