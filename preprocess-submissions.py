@@ -120,21 +120,5 @@ if __name__ == '__main__':
     submissions = read_submissions(args.submissions_filename)
     preprocessed_submissions = preprocess_submission_list(submissions)
 
-#     body = """
-# Author's note: this is a long story. Part 1 can be found [here](...).
-
-# A few days after Rob’s suicide, a handful of young reporters showed up at school trawling for quotes. Before the faculty could chase them out, they pushed hard for someone, anyone, to give support to the lone-wolf-school-shooter angle. Rob’s real friends flatly refused to speak to the reporters, but there’s a certain element among young people who only want attention, and the same kids who showed up for the grief counseling, despite never having been particularly close to Rob, were the first in line to provide quotes.
-
-# He found the Spire?” I asked.
-
-# Fletch nodded.
-
-# “Did he go in?”
-
-# [Part 3](beer)
-# """
-
-#     print(preprocess_submission_body(body))
-
     with open(output_filename, 'w') as output_file:
         output_file.write(json.dumps(preprocessed_submissions, indent=4))
