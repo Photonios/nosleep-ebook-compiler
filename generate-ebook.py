@@ -50,10 +50,10 @@ if __name__ == '__main__':
         description='Generate MarkDown a e-book from a list of submissions.')
     parser.add_argument('submissions_filename', type=str,
                         help='path to a file containing submissions')
-    parser.add_argument('-a', '--author', type=str, required=True,
-                        help='Author for this e-book.')
-    parser.add_argument('-n', '--name', type=str, required=True,
-                        help='Name of this e-book.')
+    parser.add_argument('-a', '--author', type=str,
+                        help='author for this e-book.')
+    parser.add_argument('-n', '--name', type=str,
+                        help='name of this e-book.')
     parser.add_argument('-o', '--output', type=str,
                         help='file to write to')
 
