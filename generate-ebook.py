@@ -30,11 +30,11 @@ def generate_markdown_book(submissions: List[Tuple[str, str]]) -> str:
 
     markdown_content = ''
 
-    for submission_title, submission_body in submissions:
-        markdown_content += '# %s' % submission_title
+    for submission in submissions:
+        markdown_content += '# %s' % submission['title']
         markdown_content += os.linesep
         markdown_content += os.linesep
-        markdown_content += preprocess_submission_body(submission_body)
+        markdown_content += preprocess_submission_body(submission['body'])
         markdown_content += os.linesep
         markdown_content += os.linesep
 
@@ -44,9 +44,9 @@ def generate_markdown_book(submissions: List[Tuple[str, str]]) -> str:
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='Generate MarkDown a e-book from a list of submissions.')
-    parser.add_argument('submissions_filename', type=str, required=True,
-                        help='an integer for the accumulator')
-    parser.add_argument('-o', type=str,
+    parser.add_argument('submissions_filename', type=str,
+                        help='path to a file containing submissions')
+    parser.add_argument('-o', '--output', type=str,
                         help='file to write to')
 
     args = parser.parse_args()
@@ -54,3 +54,8 @@ if __name__ == '__main__':
     submissions = read_submissions(args.submissions_filename)
     markdown = generate_markdown_book(submissions)
 
+    if args.output:
+        with open(args.output, 'w') as output_file:
+            output_file.write(markdown)
+    else:
+        print(markdown)
