@@ -25,12 +25,16 @@ def preprocess_submission_body(submission_body: str) -> str:
     return re.sub('\*(.*?)\*', r'**\1**', submission_body)
 
 
-def generate_markdown_book(submissions: List[Tuple[str, str]]) -> str:
+def generate_markdown_book(author: str, name: str, submissions: List[Tuple[str, str]]) -> str:
     """Generates a MarkDown e-book from the specified submissions."""
 
     markdown_content = ''
 
     for submission in submissions:
+        markdown_content += '% %s' % name
+        markdown_content += '% %s' % author
+        markdown_content += os.linesep
+        markdown_content += os.linesep
         markdown_content += '# %s' % submission['title']
         markdown_content += os.linesep
         markdown_content += os.linesep
@@ -46,13 +50,17 @@ if __name__ == '__main__':
         description='Generate MarkDown a e-book from a list of submissions.')
     parser.add_argument('submissions_filename', type=str,
                         help='path to a file containing submissions')
+    parser.add_argument('-a', '--author', type=str, required=True,
+                        help='Author for this e-book.')
+    parser.add_argument('-n', '--name', type=str, required=True,
+                        help='Name of this e-book.')
     parser.add_argument('-o', '--output', type=str,
                         help='file to write to')
 
     args = parser.parse_args()
 
     submissions = read_submissions(args.submissions_filename)
-    markdown = generate_markdown_book(submissions)
+    markdown = generate_markdown_book(args.author, args.name, submissions)
 
     if args.output:
         with open(args.output, 'w') as output_file:
